@@ -1,11 +1,12 @@
 .section {
 	max-width: var(--container);
 	margin: 0 auto;
+    display: grid;
+    gap: var(--space-lg);
 }
 
 .sectionHeading {
-    margin-top: var(--space-2xl);
-	margin-bottom: var(--space-lg);
+	margin-top: var(--space-2xl);
 }
 
 .sectionContainer {
@@ -59,7 +60,6 @@
 	border: 6px solid #fff;
 	box-shadow: var(--shadow);
 	position: relative;
-	/* z-index: 1; */
 }
 
 .stepText h3 {
@@ -77,7 +77,7 @@
 @media (min-width: 768px) {
 	.stepItems {
 		flex-direction: row;
-        gap: var(--space-sm);
+		gap: var(--space-sm);
 	}
 
 	.stepItem {
@@ -90,16 +90,57 @@
 		justify-self: center;
 	}
 
-    .stepper::before {
-        left: 10%;
-        right: 10%;
-        top: 60px;
-        width: auto;
-        height: 2px;
-        background: repeating-linear-gradient(
-            90deg, /* horizontal gradient direction */
-            #dfe3ea 0 10px,
-            transparent 10px 20px
-        );
-    }
+	.stepper::before {
+		left: 10%;
+		right: 10%;
+		top: 60px;
+		width: auto;
+		height: 2px;
+		background: repeating-linear-gradient(
+			90deg,
+			/* horizontal gradient direction */ #dfe3ea 0 10px,
+			transparent 10px 20px
+		);
+	}
 }
+
+.locationsHeader {
+	padding: var(--space-md);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: var(--space-md);
+}
+
+.locationsHeader .icon {
+	width: 42px;
+	height: 42px;
+}
+
+.locationsText h3 {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-xs);
+}
+
+.locationsText p {
+    font-size: var(--font-size-sm);
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.locationsPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: 0 var(--space-md) var(--space-md) var(--space-md);
+}
+
+.locationsPills span {
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-xs);
+}
+
+
+
+
