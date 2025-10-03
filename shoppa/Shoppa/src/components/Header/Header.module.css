@@ -1,0 +1,121 @@
+.header {
+	position: sticky;
+	top: 0;
+	z-index: var(--z-sticky);
+	backdrop-filter: blur(10px);
+	background: rgba(255, 255, 255, 0.85);
+	border-bottom: 1px solid var(--border);
+}
+
+/* Mobile: extended header height when hamburger menu active */
+.header.extended {
+	backdrop-filter: none;
+	border: none;
+	background: rgba(255, 255, 255, 1);
+	height: 220px;
+	border-bottom: 1px solid var(--border);
+}
+
+.nav {
+	display: grid;
+	grid-template-areas: "logo links hamburger";
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--space-md);
+}
+
+/* Mobile: extend navbar height when hamburger menu active */
+.nav.extended {
+	height: 215px;
+	align-items: flex-start;
+}
+
+/* Logo */
+.logo {
+	grid-area: logo;
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	font-weight: var(--font-weight-bold);
+}
+
+.logoMark {
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	border-radius: 8px;
+	background: conic-gradient(
+		from 220deg,
+		var(--accent),
+		#ff8364,
+		var(--accent-2)
+	);
+	box-shadow: 0 6px 18px rgba(232, 75, 75, 0.25);
+}
+
+/* Hambuger menu */
+.nav > :last-child {
+	grid-area: hamburger;
+	justify-self: flex-end;
+}
+
+/* Links */
+.links {
+	grid-area: links;
+	display: none;
+	width: 100%;
+	list-style: none;
+	flex-direction: column;
+	gap: var(--space-md);
+	text-align: center;
+	align-self: flex-end;
+}
+
+.links li {
+    font-size: var(--font-size-sm);
+}
+
+/* Mobile: show when hamburger menu is active */
+.links.show {
+	display: flex;
+}
+
+.links > :last-child {
+	display: none;
+}
+
+/* .languageDropDown {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-sm);
+} */
+
+@media (min-width: 768px) {
+	.links {
+		display: flex !important;
+		flex-direction: row;
+		width: auto;
+		align-self: center;
+		gap: var(--space-lg);
+	}
+
+	.nav {
+		display: flex !important;
+		justify-content: space-around;
+	}
+
+	.nav > :last-child {
+		display: none;
+	}
+
+	.nav.extended {
+		height: auto;
+	}
+
+	.header.extended {
+		height: auto;
+	}
+}

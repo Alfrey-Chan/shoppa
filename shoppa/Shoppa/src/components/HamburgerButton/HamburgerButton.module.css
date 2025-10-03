@@ -1,0 +1,40 @@
+.hamburger {
+	/* justify-self: flex-end; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	gap: 5px;
+}
+
+.hamburger:focus {
+	outline: none;
+}
+
+.hamburger span {
+	display: block;
+	width: 18px;
+	height: 1.5px;
+	background-color: var(--text);
+	border-radius: 10px;
+	transition: all var(--transition-base);
+	transform-origin: center;
+}
+
+/* Hamburger to X when active */
+.hamburger.isActive span:nth-child(1) {
+	transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.isActive span:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburger.isActive span:nth-child(3) {
+	transform: translateY(-5.5px) rotate(-45deg);
+}
