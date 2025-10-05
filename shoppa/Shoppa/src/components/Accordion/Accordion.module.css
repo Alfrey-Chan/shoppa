@@ -1,0 +1,32 @@
+.accordion {
+	/* padding: var(--space-xs) 0; */
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+	border-bottom: 1.3px solid black;
+}
+
+.question {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-bold);
+}
+
+.answer {
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-semibold);
+    color: var(--muted);
+    padding: 0 1.2em 0.8em 1.2em;
+    max-width: 95%;
+}
+
+.icon {
+	transition: all var(--transition-slow);
+}
+
+.iconOpen {
+	transition: all var(--transition-slow);
+	transform: rotate(180deg);
+}
