@@ -1,0 +1,25 @@
+.card {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.card img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center 80%;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+.card:nth-child(2) img {
+    object-position: center 30%;
+}
+
+
