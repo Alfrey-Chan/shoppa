@@ -1,14 +1,121 @@
 import Hero from "../components/Hero/Hero";
 import styles from "./HomePage.module.css";
+import ProductCard from "../components/ProductCard/ProductCard";
+import Accordion from "../components/Accordion/Accordion";
+import { useState } from "react";
 
 const HomePage = () => {
+	const [showModal, setShowModal] = useState(false);
+
+	const picturePaths = [
+		"snackbundle.jpg",
+		"snacks.jpg",
+		"royce.jpg",
+		"pringles.jpg",
+		"kitkat.jpg",
+		"mango.jpg",
+		"cosmetics.jpg",
+		"frypan.jpg",
+		"suito.jpg",
+	];
+
+	const FAQ = {
+		"How is pricing calculated?":
+			"Your quote includes: the original item price converted to CAD, and our service fee. We charge a flat service fee of $20, but may be higher if the requested item takes more effort to obtain.",
+		"What payment methods do you accept?":
+			"We currently only accept Interac e-Transfer. Since we require payment before we do your shopping, cash is not an option.",
+		"Do you do delivery?":
+			"No, we arrange a time and place to meet up so we can hand off the items directly to you",
+		"Where do meets up happen?":
+			"We recommend safe designated transaction areas such as police stations, but malls and skytrain stations are also an option.",
+	};
+
 	return (
 		<div className={styles.container}>
-			<Hero />
+			<Hero
+				title="Shop from any store in Japan.<br />We'll deliver to BC."
+				subtitle="Tell us what you want, get a quote, pay, and meet locally for pickup
+                    — simple, transparent, and fast. No international shipping."
+				ctaBtnText="Get Started"
+				onClick={() => setShowModal(!showModal)}
+			/>
+
+			{/* Modal Request Form */}
+			<div className={`${styles.overlay} ${showModal ? styles.showModal : ""}`}>
+				<div className={styles.modal}>
+					<div className={styles.modalHeader}>
+						<h3 className={styles.modalTitle}>Start your request</h3>
+
+						<button
+							className={styles.closeModalBtn}
+							onClick={() => setShowModal(!showModal)}
+						>
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path
+									d="M18 6L6 18M6 6l12 12"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+								/>
+							</svg>
+						</button>
+					</div>
+
+					<form action="" className={styles.modalForm}>
+						<div className={styles.inputGroup}>
+							<label htmlFor="email">Email</label>
+							<input
+								type="email"
+								name="email"
+								id="email"
+								placeholder="you@example.com"
+								required
+							/>
+						</div>
+
+						<div className={styles.inputGroup}>
+							<label htmlFor="requestDetails">Your request details</label>
+							<textarea
+								id="requestDetails"
+								name="requestDetails"
+								placeholder="Tell us what you want! Include product links, photos, or specific details (brand, size, color, etc.)"
+								required
+							/>
+						</div>
+
+						<div className={styles.inputGroup}>
+							<label htmlFor="location">Pickup city</label>
+							<select id="location" name="location" defaultValue="" required>
+								<option value="" disabled>
+									Select one
+								</option>
+								<option value="Burnaby">Burnaby</option>
+								<option value="Richmond">Richmond</option>
+								<option value="North Vancouver">North Vancouver</option>
+								<option value="West Vancouver">West Vancouver</option>
+								<option value="New Westminster">New Westminster</option>
+								<option value="Surrey">Surrey</option>
+								<option value="Delta">Delta</option>
+								<option value="Coquitlam">Coquitlam</option>
+								<option value="Port Coquitlam">Port Coquitlam</option>
+								<option value="Port Moody">Port Moody</option>
+								<option value="Langley">Langley</option>
+							</select>
+						</div>
+
+						<div className={styles.modalFooter}>
+							<button type="submit" className={styles.requestSubmitBtn}>
+								Submit request
+							</button>
+							<p>We typically respond within 24 hours.</p>
+						</div>
+					</form>
+				</div>
+			</div>
 
 			{/* How it works */}
 			<section className={styles.section}>
-				<h2 className={styles.sectionHeading}>How it works (3 steps)</h2>
+				<h2 className={styles.sectionHeader}>How it works (3 steps)</h2>
 
 				<div className={styles.sectionContainer}>
 					<div className={styles.stepper}>
@@ -47,8 +154,8 @@ const HomePage = () => {
 								<div className={styles.stepText}>
 									<h3>2. Quote, Pay & Set Pickup</h3>
 									<p>
-										We send a total price <em>(item + JP fees + service)</em>{" "}
-										and payment options. Once paid, we agree on a time & place
+										We provide a quote <em>(item cost + service fee)</em> and
+										payment instructions. Once paid, we agree on a time & place
 										to pick up in the Lower Mainland.
 									</p>
 								</div>
@@ -92,10 +199,7 @@ const HomePage = () => {
 							</div>
 							<div className={styles.locationsText}>
 								<h3>Lower Mainland meetup only</h3>
-								<p>
-									Your shopper buys the item in Japan and brings it to BC. Meet
-									at the confirmed spot—no international shipping.
-								</p>
+								<p>Service available in these Lower Mainland locations:</p>
 							</div>
 						</div>
 					</div>
@@ -116,6 +220,90 @@ const HomePage = () => {
 							<span>Langley</span>
 						</div>
 					</div>
+				</div>
+			</section>
+
+			{/* Recommendations */}
+			<section className={`${styles.section} ${styles.recommendationsSection}`}>
+				<h2 className={styles.sectionHeader}>
+					Snacks, cosmetics, or anything else!
+				</h2>
+				<p className={styles.sectionSubheader}>
+					Popular Japanese snacks, treats, and other authentic goods you can't
+					find in the Lower Mainland. Not sure what to get? Share your budget
+					and we'll hand-pick something special for you.
+				</p>
+
+				<div className={styles.cards}>
+					{picturePaths.map((path) => (
+						<ProductCard key={path} imgPath={`/${path}`} />
+					))}
+				</div>
+			</section>
+
+			{/* FAQ */}
+			<section className={styles.section}>
+				<h2 className={styles.sectionHeader}>FAQ</h2>
+				<div className={styles.borderLine}></div>
+
+				<div className={styles.faq}>
+					{Object.entries(FAQ).map(([question, answer]) => (
+						<Accordion key={question} question={question} answer={answer} />
+					))}
+				</div>
+			</section>
+
+			{/* Contact */}
+			<section className={styles.section}>
+				<h2 className={styles.sectionHeader}>Contact</h2>
+
+				<div className={styles.borderLine}></div>
+
+				<div className={`${styles.contactContainer}`}>
+					<form id="#contact">
+						<div className={styles.contactHeader}>
+							Have a question? Send us a message. For a price quote or to begin
+							your request,{" "}
+							<b
+								onClick={() => setShowModal(true)}
+								style={{ cursor: "pointer", color: "var(--accent)" }}
+							>
+								click here
+							</b>{" "}
+							to get started
+						</div>
+
+						<div className="inputGroup">
+							<label htmlFor="email">
+								Email <span className={styles.asterick}>*</span>
+							</label>
+							<input type="email" id="email" required />
+						</div>
+
+						<div className="inputGroup">
+							<label htmlFor="subject">
+								Subject <span className={styles.asterick}>*</span>
+							</label>
+							<select id="subject" required>
+								<option value="" disabled={true} selected={true}></option>
+								<option value="General Feedback">General Feedback</option>
+								<option value="Item Request">Item Requests</option>
+								<option value="Pricing/Payment">Pricing/Payment</option>
+								<option value="Cancellation">Cancellation</option>
+							</select>
+						</div>
+
+						<div className="inputGroup">
+							<label htmlFor="message">
+								Message <span className={styles.asterick}>*</span>
+							</label>
+							<textarea name="message" id="message" required />
+						</div>
+
+						<button type="submit" className={styles.submit}>
+							Send
+						</button>
+					</form>
 				</div>
 			</section>
 		</div>
