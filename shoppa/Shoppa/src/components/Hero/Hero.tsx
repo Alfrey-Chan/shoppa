@@ -1,16 +1,24 @@
 import styles from "./Hero.module.css";
 
-const Hero = () => {
+interface HeroProps {
+    title: string;
+    subtitle?: string;
+    ctaBtnText?: string;
+    onClick: () => void;
+}
+
+const Hero = ({title, subtitle, ctaBtnText, onClick}:HeroProps) => {
     return (
         <section className={styles.hero} aria-labelledby="hero-heading">
             <div className={`${styles.container} ${styles.heroWrap}`}>
                 <div className={styles.brandPill}>Only in the Lower Mainland, BC</div>
-                <h1 className={styles.heroTitle} id="hero-heading">
-                    Shop any store in Japan.<br />We'll bring it to you in BC.
-                </h1>
+                <h1
+                    className={styles.heroTitle}
+                    id="hero-heading"
+                    dangerouslySetInnerHTML={{ __html: title }}
+                />
                 <p className={styles.heroSubtitle}>
-                    Tell us what you want, get a quote, pay, and meet locally for pickup
-                    — simple, transparent, and fast. No international shipping.
+                    {subtitle}
                 </p>
                 <div className={styles.heroCta}>
                     <button
@@ -18,8 +26,9 @@ const Hero = () => {
                         id="openQuoteHero"
                         aria-haspopup="dialog"
                         aria-controls="quoteModal"
+                        onClick={onClick}
                     >
-                        Get Started
+                        {ctaBtnText}
                     </button>
                 </div>
             </div>
@@ -85,8 +94,8 @@ const Hero = () => {
                     </defs>
 
                     <circle
-                        cx="1320"
-                        cy="150"
+                        cx="1280"
+                        cy="80"
                         r="78"
                         fill="url(#sunGrad)"
                         opacity=".9"
@@ -177,7 +186,7 @@ const Hero = () => {
                         <rect x="1270" y="210" width="58" height="104" rx="10" />
                     </g>
 
-                    <g transform="translate(1410,110)" opacity=".95">
+                    <g transform="translate(1410,180)" opacity=".95">
                         <rect x="-1.5" y="-34" width="3" height="34" fill="#cfd6e3" />
                         <polygon points="-14,0 0,-28 14,0" fill="#e84b4b" />
                         <rect x="-6" y="0" width="12" height="160" fill="#e84b4b" />
@@ -258,6 +267,7 @@ const Hero = () => {
                         stroke="#e84b4b"
                         strokeWidth="18"
                         strokeLinecap="round"
+                        transform="translate(0, 10)"
                     />
                     <path
                         d="M120 364 Q 800 290 1480 364"
@@ -266,6 +276,7 @@ const Hero = () => {
                         strokeOpacity=".08"
                         strokeWidth="24"
                         strokeLinecap="round"
+                        transform="translate(0, 10)"
                     />
                     <g stroke="#e84b4b" strokeWidth="12" strokeLinecap="round">
                         <line x1="300" y1="360" x2="300" y2="320" />

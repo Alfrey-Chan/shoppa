@@ -27,7 +27,7 @@
 	--radius-xl: 22px;
 	--radius-lg: 16px;
 	--radius: 12px;
-	--radius-sm: 10px;
+	--radius-sm: 8px;
 
 	/* Spacing */
 	--space-xs: 4px;
@@ -103,6 +103,7 @@ body {
 		#edf1f7 100%
 	);
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 h1 {
@@ -121,6 +122,9 @@ button {
 	transition: border-color 0.25s;
 	background: none;
 }
+
+
+
 button:hover {
 	/* border-color: #646cff; */
 }
@@ -128,16 +132,3 @@ button:hover {
 button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 } */
-
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
-}
