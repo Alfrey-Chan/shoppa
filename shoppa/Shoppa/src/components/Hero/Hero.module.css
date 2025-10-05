@@ -50,6 +50,7 @@
 
 .heroSubtitle {
 	color: var(--muted);
+	max-width: 80%;
 }
 
 .heroCta {
