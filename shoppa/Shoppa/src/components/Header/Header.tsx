@@ -21,7 +21,7 @@ const Header = () => {
 				{/* Navigation links */}
 				<ul className={`${styles.links} ${isMenuOpen ? styles.show : ""}`}>
 					<li>
-						<a href="#howItWorks">How it works</a>
+						<a href="#how-it-works">How it works</a>
 					</li>
 					<li>
 						<a href="#ideas">Ideas</a>

@@ -20,18 +20,33 @@ const HomePage = () => {
 	];
 
 	const FAQ = {
-		"How is pricing calculated?":
-			"Your quote includes: the original item price converted to CAD, and our service fee. We charge a flat service fee of $20, but may be higher if the requested item takes more effort to obtain.",
+		"How is total pricing calculated?":
+			"Your quote includes the original item price (converted to CAD) plus our service fee.",
+		"How is the service fee calculated?":
+			"There is a base service fee of $25, which may increase for large orders or requests involving multiple stores or categories.",
+		"Are there any item restrictions?":
+			"Oversized items may not be accepted. Please inquire via the contact form or submit a request, and we'll confirm if we can accommodate your item.",
 		"What payment methods do you accept?":
-			"We currently only accept Interac e-Transfer. Since we require payment before we do your shopping, cash is not an option.",
+			"We currently only accept Interac e-Transfer.",
 		"Do you do delivery?":
 			"No, we arrange a time and place to meet up so we can hand off the items directly to you",
-		"Where do meets up happen?":
-			"We recommend safe designated transaction areas such as police stations, but malls and skytrain stations are also an option.",
+		"Where and when do meets up happen?":
+			"We'll coordinate via email to arrange a time and location that works for you. We recommend safe designated transaction areas offered by police stations, but malls and skytrain stations are also an option.",
+		"Do you offer refunds?":
+			"Unfortunately, we do not offer refunds. All sales are final once payment is received.",
 	};
 
 	return (
 		<div className={styles.container}>
+			{/* Important Notice Banner */}
+			<div className={styles.importantBanner}>
+				<p>
+					<span>Accepting orders until <strong className={styles.highlightDate}>Dec 25th</strong></span>
+					<span className={styles.separator}>|</span>
+					<span>Pickup Period: <strong className={styles.highlightDate}>Jan 12 - Jan 25</strong></span>
+				</p>
+			</div>
+
 			<Hero
 				title="Shop from any store in Japan.<br />We'll deliver to BC."
 				subtitle="Tell us what you want, get a quote, pay, and meet locally for pickup
@@ -114,7 +129,7 @@ const HomePage = () => {
 			</div>
 
 			{/* How it works */}
-			<section className={styles.section}>
+			<section id="how-it-works" className={styles.section}>
 				<h2 className={styles.sectionHeader}>How it works (3 steps)</h2>
 
 				<div className={styles.sectionContainer}>
@@ -224,15 +239,50 @@ const HomePage = () => {
 			</section>
 
 			{/* Recommendations */}
-			<section className={`${styles.section} ${styles.recommendationsSection}`}>
-				<h2 className={styles.sectionHeader}>
-					Snacks, cosmetics, or anything else!
-				</h2>
+			<section id="ideas" className={`${styles.section} ${styles.recommendationsSection}`}>
+				<h2 className={styles.sectionHeader}>What we can get for you</h2>
+
+				<div className={styles.borderLine}></div>
+
 				<p className={styles.sectionSubheader}>
 					Popular Japanese snacks, treats, and other authentic goods you can't
-					find in the Lower Mainland. Not sure what to get? Share your budget
-					and we'll hand-pick something special for you.
+					find in the Lower Mainland.
+					<br />
+					<br />
+					Not sure what to get? Here are some ideas.
 				</p>
+
+				<div className={styles.popularRequests}>
+					<p className={styles.popularRequestsTitle}>Popular requests:</p>
+					<ul className={styles.requestsList}>
+						<li>
+							<strong>Snack Mix</strong> — Share your budget and we'll curate
+							authentic Japanese snacks you won't find locally
+						</li>
+						<li>
+							<strong>Royce Chocolates</strong> — Premium chocolates exclusive
+							to Japan
+						</li>
+						<li>
+							<strong>Tokyo Banana</strong> — The iconic Japanese souvenir snack
+						</li>
+						<li>
+							<strong>Cosmetics</strong> — Makeup, skincare, shampoo, and beauty
+							products
+						</li>
+						<li>
+							<strong>Stationery</strong> — High-quality Japanese pens, markers,
+							and notebooks
+						</li>
+						<li>
+							<strong>Fashion</strong> — GU, UNIQLO, BAPE, MUJI, and more
+						</li>
+						<li>
+							<strong>Anime Figures</strong> — Gundam, Demon Slayer, One Piece,
+							and other collectibles
+						</li>
+					</ul>
+				</div>
 
 				<div className={styles.cards}>
 					{picturePaths.map((path) => (
@@ -242,7 +292,7 @@ const HomePage = () => {
 			</section>
 
 			{/* FAQ */}
-			<section className={styles.section}>
+			<section id="faq" className={styles.section}>
 				<h2 className={styles.sectionHeader}>FAQ</h2>
 				<div className={styles.borderLine}></div>
 
@@ -254,7 +304,7 @@ const HomePage = () => {
 			</section>
 
 			{/* Contact */}
-			<section className={styles.section}>
+			<section id="contact" className={styles.section}>
 				<h2 className={styles.sectionHeader}>Contact</h2>
 
 				<div className={styles.borderLine}></div>

@@ -1,3 +1,45 @@
+.importantBanner {
+	background: linear-gradient(135deg, #ffc107, #ff9800);
+	color: #000;
+	text-align: center;
+	padding: var(--space-md);
+	font-size: var(--font-size-sm);
+	font-weight: 500;
+	position: sticky;
+	top: 0;
+	z-index: 1200;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.importantBanner p {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+	margin: 0;
+}
+
+.separator {
+	display: none;
+}
+
+.highlightDate {
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
+
+@media (min-width: 640px) {
+	.importantBanner p {
+		flex-direction: row;
+		justify-content: center;
+		gap: var(--space-sm);
+	}
+
+	.separator {
+		display: inline;
+	}
+}
+
 .overlay {
 	position: fixed;
 	inset: 0;
@@ -86,7 +128,7 @@
 .sectionHeader {
 	margin-top: var(--space-2xl);
 	letter-spacing: 0.8px;
-	font-size: var(--font-size-xl);
+	font-size: var(--font-size-2xl);
 }
 
 .sectionContainer {
@@ -233,6 +275,29 @@
 }
 
 .recommendationsSection p {
+	font-size: var(--font-size-sm);
+	color: var(--muted);
+}
+
+.popularRequests {
+	border-radius: var(--radius-lg);
+	margin-bottom: var(--space-md);
+}
+
+.popularRequestsTitle {
+	font-weight: var(--font-weight-semibold);
+	margin-bottom: var(--space-sm);
+	color: var(--text);
+}
+
+.requestsList {
+	padding-left: var(--space-md);
+	list-style: square;
+	display: grid;
+	gap: var(--space-sm);
+}
+
+.requestsList li {
 	font-size: var(--font-size-sm);
 	color: var(--muted);
 }
