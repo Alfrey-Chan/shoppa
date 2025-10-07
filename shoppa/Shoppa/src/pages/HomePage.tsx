@@ -70,7 +70,7 @@ const HomePage = () => {
 		const url = `${import.meta.env.VITE_API_URL}/api/request`;
 		try {
 			const response = await fetch(url, {
-				method: "GET",
+				method: "POST",
 				body: formData,
 			});
 
