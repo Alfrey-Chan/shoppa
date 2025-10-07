@@ -68,10 +68,13 @@ const HomePage = () => {
 		});
 
 		try {
-			const response = await fetch(`${import.meta.env.VITE_API_URL}/api/request`, {
-				method: "POST",
-				body: formData,
-			});
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/api/smtp-ping`,
+				{
+					method: "GET",
+					body: formData,
+				}
+			);
 
 			const data = await response.json();
 
@@ -80,6 +83,8 @@ const HomePage = () => {
 				setFormError(errorMessages);
 				return;
 			}
+			console.log(data);
+			return;
 
 			if (!response.ok) {
 				setFormError("Something went wrong. Please try again.");
@@ -106,13 +111,16 @@ const HomePage = () => {
 		setFormSuccess(null);
 
 		try {
-			const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(contactFormData),
-			});
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}/api/contact`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(contactFormData),
+				}
+			);
 
 			const data = await response.json();
 
