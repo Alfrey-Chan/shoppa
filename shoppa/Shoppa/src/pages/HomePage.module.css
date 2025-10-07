@@ -367,3 +367,57 @@ option {
 	background-color: var(--accent);
 	color: #fff;
 }
+
+.imagePreview {
+	margin-top: var(--space-sm);
+}
+
+.previewTitle {
+	font-size: var(--font-size-sm);
+	margin-bottom: var(--space-xs);
+	color: var(--muted);
+}
+
+.imageList {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+}
+
+.imageItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--space-xs) var(--space-sm);
+	background: var(--bg);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border);
+}
+
+.fileName {
+	font-size: var(--font-size-xs);
+	color: var(--text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.removeBtn {
+	background: var(--error);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	font-size: 12px;
+	padding: 0;
+	flex-shrink: 0;
+}
+
+.removeBtn:hover {
+	background: #dc2626;
+}

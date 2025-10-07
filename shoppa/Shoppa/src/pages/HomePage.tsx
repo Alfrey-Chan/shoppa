@@ -6,6 +6,17 @@ import { useState } from "react";
 
 const HomePage = () => {
 	const [showModal, setShowModal] = useState(false);
+	const [uploadedImages, setUploadedImages] = useState<File[]>([]);
+	const [requestFormData, setRequestFormData] = useState({
+		email: "",
+		requestDetails: "",
+		pickupCity: "",
+	});
+	const [contactFormData, setContactFormData] = useState({
+		email: "",
+		topic: "",
+		message: "",
+	});
 
 	const picturePaths = [
 		"snackbundle.jpg",
@@ -36,21 +47,73 @@ const HomePage = () => {
 			"Unfortunately, we do not offer refunds. All sales are final once payment is received.",
 	};
 
+	const handleRequestSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		formData.append("email", requestFormData.email);
+		formData.append("request_details", requestFormData.requestDetails);
+		formData.append("pickup_city", requestFormData.pickupCity);
+
+		uploadedImages.forEach((file) => {
+			formData.append("images[]", file);
+		});
+
+		try {
+			const response = await fetch("http://localhost:8001/api/request", {
+				method: "POST",
+				body: formData,
+			});
+
+			const data = await response.json();
+
+			console.log(data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleContactSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch("http://localhost:8001/api/contact", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(contactFormData),
+			});
+
+			const data = await response.json();
+			console.log(data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			{/* Important Notice Banner */}
 			<div className={styles.importantBanner}>
 				<p>
-					<span>Accepting orders until <strong className={styles.highlightDate}>Dec 25th</strong></span>
+					<span>
+						Accepting orders until{" "}
+						<strong className={styles.highlightDate}>Dec 25th</strong>
+					</span>
 					<span className={styles.separator}>|</span>
-					<span>Pickup Period: <strong className={styles.highlightDate}>Jan 12 - Jan 25</strong></span>
+					<span>
+						Pickup Period:{" "}
+						<strong className={styles.highlightDate}>Jan 12 - Jan 25</strong>
+					</span>
 				</p>
 			</div>
 
 			<Hero
 				title="Shop from any store in Japan.<br />We'll deliver to BC."
 				subtitle="Tell us what you want, get a quote, pay, and meet locally for pickup
-                    — simple, transparent, and fast. No international shipping."
+                    — simple, transparent, and affordable.<br />No expensive international shipping fees."
 				ctaBtnText="Get Started"
 				onClick={() => setShowModal(!showModal)}
 			/>
@@ -76,7 +139,7 @@ const HomePage = () => {
 						</button>
 					</div>
 
-					<form action="" className={styles.modalForm}>
+					<form onSubmit={handleRequestSubmit} className={styles.modalForm}>
 						<div className={styles.inputGroup}>
 							<label htmlFor="email">Email</label>
 							<input
@@ -84,6 +147,13 @@ const HomePage = () => {
 								name="email"
 								id="email"
 								placeholder="you@example.com"
+								value={requestFormData.email}
+								onChange={(e) =>
+									setRequestFormData({
+										...requestFormData,
+										email: e.target.value,
+									})
+								}
 								required
 							/>
 						</div>
@@ -94,13 +164,31 @@ const HomePage = () => {
 								id="requestDetails"
 								name="requestDetails"
 								placeholder="Tell us what you want! Include product links, photos, or specific details (brand, size, color, etc.)"
+								value={requestFormData.requestDetails}
+								onChange={(e) =>
+									setRequestFormData({
+										...requestFormData,
+										requestDetails: e.target.value,
+									})
+								}
 								required
 							/>
 						</div>
 
 						<div className={styles.inputGroup}>
 							<label htmlFor="location">Pickup city</label>
-							<select id="location" name="location" defaultValue="" required>
+							<select
+								id="location"
+								name="location"
+								value={requestFormData.pickupCity}
+								onChange={(e) =>
+									setRequestFormData({
+										...requestFormData,
+										pickupCity: e.target.value,
+									})
+								}
+								required
+							>
 								<option value="" disabled>
 									Select one
 								</option>
@@ -116,6 +204,46 @@ const HomePage = () => {
 								<option value="Port Moody">Port Moody</option>
 								<option value="Langley">Langley</option>
 							</select>
+						</div>
+
+						<div className={styles.inputGroup}>
+							<label htmlFor="images">Upload image (optional, max 5)</label>
+							<input
+								type="file"
+								id="images"
+								name="images"
+								accept="image/jpeg,image/png,image/jpg"
+								multiple
+								onChange={(e) => {
+									if (e.target.files) {
+										const newFiles = Array.from(e.target.files);
+										setUploadedImages([...uploadedImages, ...newFiles]);
+									}
+								}}
+							/>
+
+							{uploadedImages.length > 0 && (
+								<div className={styles.imagePreview}>
+									<div className={styles.imageList}>
+										{uploadedImages.map((file, index) => (
+											<div key={index} className={styles.imageItem}>
+												<span className={styles.fileName}>{file.name}</span>
+												<button
+													type="button"
+													className={styles.removeBtn}
+													onClick={() => {
+														setUploadedImages(
+															uploadedImages.filter((_, i) => i !== index)
+														);
+													}}
+												>
+													✕
+												</button>
+											</div>
+										))}
+									</div>
+								</div>
+							)}
 						</div>
 
 						<div className={styles.modalFooter}>
@@ -171,7 +299,7 @@ const HomePage = () => {
 									<p>
 										We provide a quote <em>(item cost + service fee)</em> and
 										payment instructions. Once paid, we agree on a time & place
-										to pick up in the Lower Mainland.
+										to pick up in the Great Vancouver area.
 									</p>
 								</div>
 							</article>
@@ -213,8 +341,8 @@ const HomePage = () => {
 								</svg>
 							</div>
 							<div className={styles.locationsText}>
-								<h3>Lower Mainland meetup only</h3>
-								<p>Service available in these Lower Mainland locations:</p>
+								<h3>Meetup locations</h3>
+								<p>Service available in these Greater Vancouver locations:</p>
 							</div>
 						</div>
 					</div>
@@ -224,11 +352,9 @@ const HomePage = () => {
 							<span>Vancouver</span>
 							<span>Burnaby</span>
 							<span>Richmond</span>
-							<span>North Vancouver</span>
 							<span>West Vancouver</span>
 							<span>New Westminster</span>
 							<span>Surrey</span>
-							<span>Delta</span>
 							<span>Coquitlam</span>
 							<span>Port Coquitlam</span>
 							<span>Port Moody</span>
@@ -239,7 +365,10 @@ const HomePage = () => {
 			</section>
 
 			{/* Recommendations */}
-			<section id="ideas" className={`${styles.section} ${styles.recommendationsSection}`}>
+			<section
+				id="ideas"
+				className={`${styles.section} ${styles.recommendationsSection}`}
+			>
 				<h2 className={styles.sectionHeader}>What we can get for you</h2>
 
 				<div className={styles.borderLine}></div>
@@ -310,7 +439,7 @@ const HomePage = () => {
 				<div className={styles.borderLine}></div>
 
 				<div className={`${styles.contactContainer}`}>
-					<form id="#contact">
+					<form onSubmit={handleContactSubmit} id="#contact">
 						<div className={styles.contactHeader}>
 							Have a question? Send us a message. For a price quote or to begin
 							your request,{" "}
@@ -327,16 +456,37 @@ const HomePage = () => {
 							<label htmlFor="email">
 								Email <span className={styles.asterick}>*</span>
 							</label>
-							<input type="email" id="email" required />
+							<input
+								type="email"
+								id="email"
+								value={contactFormData.email}
+								onChange={(e) =>
+									setContactFormData({
+										...contactFormData,
+										email: e.target.value,
+									})
+								}
+								required
+							/>
 						</div>
 
 						<div className="inputGroup">
-							<label htmlFor="subject">
-								Subject <span className={styles.asterick}>*</span>
+							<label htmlFor="topic">
+								Topic <span className={styles.asterick}>*</span>
 							</label>
-							<select id="subject" required>
-								<option value="" disabled={true} selected={true}></option>
-								<option value="General Feedback">General Feedback</option>
+							<select
+								id="topic"
+								value={contactFormData.topic}
+								onChange={(e) =>
+									setContactFormData({
+										...contactFormData,
+										topic: e.target.value,
+									})
+								}
+								required
+							>
+								<option value="" disabled={true}></option>
+								<option value="General Question">General Question</option>
 								<option value="Item Request">Item Requests</option>
 								<option value="Pricing/Payment">Pricing/Payment</option>
 								<option value="Cancellation">Cancellation</option>
@@ -347,7 +497,18 @@ const HomePage = () => {
 							<label htmlFor="message">
 								Message <span className={styles.asterick}>*</span>
 							</label>
-							<textarea name="message" id="message" required />
+							<textarea
+								name="message"
+								id="message"
+								value={contactFormData.message}
+								onChange={(e) =>
+									setContactFormData({
+										...contactFormData,
+										message: e.target.value,
+									})
+								}
+								required
+							/>
 						</div>
 
 						<button type="submit" className={styles.submit}>
