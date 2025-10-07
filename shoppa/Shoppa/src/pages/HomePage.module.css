@@ -421,3 +421,21 @@ option {
 .removeBtn:hover {
 	background: #dc2626;
 }
+
+.formError {
+	padding: var(--space-sm) var(--space-md);
+	background: #fee;
+	border: 1px solid var(--error);
+	border-radius: var(--radius-sm);
+	color: var(--error);
+	font-size: var(--font-size-sm);
+}
+
+.formSuccess {
+	padding: var(--space-sm) var(--space-md);
+	background: #efe;
+	border: 1px solid var(--success);
+	border-radius: var(--radius-sm);
+	color: var(--success);
+	font-size: var(--font-size-sm);
+}

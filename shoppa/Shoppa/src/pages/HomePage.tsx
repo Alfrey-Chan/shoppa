@@ -18,6 +18,10 @@ const HomePage = () => {
 		message: "",
 	});
 
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [formError, setFormError] = useState<string | null>(null);
+	const [formSuccess, setFormSuccess] = useState<string | null>(null);
+
 	const picturePaths = [
 		"snackbundle.jpg",
 		"snacks.jpg",
@@ -49,6 +53,9 @@ const HomePage = () => {
 
 	const handleRequestSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setIsSubmitting(true);
+		setFormError(null);
+		setFormSuccess(null);
 
 		const formData = new FormData();
 
@@ -68,14 +75,35 @@ const HomePage = () => {
 
 			const data = await response.json();
 
-			console.log(data);
+			if (response.status === 422) {
+				const errorMessages = Object.values(data.errors).flat().join(", ");
+				setFormError(errorMessages);
+				return;
+			}
+
+			if (!response.ok) {
+				setFormError("Something went wrong. Please try again.");
+				return;
+			}
+
+			// Success
+			setFormSuccess(
+				"Request submitted successfully! We'll respond within 24 hours."
+			);
+			setRequestFormData({ email: "", requestDetails: "", pickupCity: "" });
+			setUploadedImages([]);
 		} catch (error) {
-			console.error(error);
+			setFormError("Server error. Please check your connection.");
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
 	const handleContactSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setIsSubmitting(true);
+		setFormError(null);
+		setFormSuccess(null);
 
 		try {
 			const response = await fetch("http://localhost:8001/api/contact", {
@@ -87,9 +115,27 @@ const HomePage = () => {
 			});
 
 			const data = await response.json();
-			console.log(data);
+
+			if (response.status === 422) {
+				const errorMessages = Object.values(data.errors).flat().join(", ");
+				setFormError(errorMessages);
+				return;
+			}
+
+			if (!response.ok) {
+				setFormError("Something went wrong. Please try again.");
+				return;
+			}
+
+			// Success
+			setFormSuccess(
+				"Message sent successfully! We'll respond within 24 hours."
+			);
+			setContactFormData({ email: "", topic: "", message: "" });
 		} catch (error) {
-			console.error(error);
+			setFormError("Server error. Please try again later.");
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
@@ -194,11 +240,9 @@ const HomePage = () => {
 								</option>
 								<option value="Burnaby">Burnaby</option>
 								<option value="Richmond">Richmond</option>
-								<option value="North Vancouver">North Vancouver</option>
 								<option value="West Vancouver">West Vancouver</option>
 								<option value="New Westminster">New Westminster</option>
 								<option value="Surrey">Surrey</option>
-								<option value="Delta">Delta</option>
 								<option value="Coquitlam">Coquitlam</option>
 								<option value="Port Coquitlam">Port Coquitlam</option>
 								<option value="Port Moody">Port Moody</option>
@@ -246,9 +290,19 @@ const HomePage = () => {
 							)}
 						</div>
 
+						{formError && <div className={styles.formError}>{formError}</div>}
+
+						{formSuccess && (
+							<div className={styles.formSuccess}>{formSuccess}</div>
+						)}
+
 						<div className={styles.modalFooter}>
-							<button type="submit" className={styles.requestSubmitBtn}>
-								Submit request
+							<button
+								type="submit"
+								className={styles.requestSubmitBtn}
+								disabled={isSubmitting}
+							>
+								{isSubmitting ? "Submitting..." : "Submit request"}
 							</button>
 							<p>We typically respond within 24 hours.</p>
 						</div>
@@ -511,8 +565,18 @@ const HomePage = () => {
 							/>
 						</div>
 
-						<button type="submit" className={styles.submit}>
-							Send
+						{formError && <div className={styles.formError}>{formError}</div>}
+
+						{formSuccess && (
+							<div className={styles.formSuccess}>{formSuccess}</div>
+						)}
+
+						<button
+							type="submit"
+							className={styles.submit}
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? "Sending..." : "Send"}
 						</button>
 					</form>
 				</div>
