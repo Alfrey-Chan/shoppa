@@ -67,36 +67,39 @@ const HomePage = () => {
 			formData.append("images[]", file);
 		});
 
+		const url = `${
+			import.meta.env.VITE_API_URL
+		}/api/smtp-ping?ts=${Date.now()}`;
+		// const url = `${import.meta.env.VITE_API_URL}/api/request`;
 		try {
-			const response = await fetch(
-				`${import.meta.env.VITE_API_URL}/api/smtp-ping`,
-				{
-					method: "GET",
-					body: formData,
-				}
-			);
+			const response = await fetch(url, {
+				method: "GET",
+				// body: formData,
+			});
 
-			const data = await response.json();
+			// const data = await response.json();
+			const text = await response.text();
+			console.log(text);
+			setFormSuccess(text);
+			// if (response.status === 422) {
+			// 	const errorMessages = Object.values(data.errors).flat().join(", ");
+			// 	setFormError(errorMessages);
+			// 	return;
+			// }
+			// console.log(data);
+			// return;
 
-			if (response.status === 422) {
-				const errorMessages = Object.values(data.errors).flat().join(", ");
-				setFormError(errorMessages);
-				return;
-			}
-			console.log(data);
-			return;
+			// if (!response.ok) {
+			// 	setFormError("Something went wrong. Please try again.");
+			// 	return;
+			// }
 
-			if (!response.ok) {
-				setFormError("Something went wrong. Please try again.");
-				return;
-			}
-
-			// Success
-			setFormSuccess(
-				"Request submitted successfully! We'll respond within 24 hours."
-			);
-			setRequestFormData({ email: "", requestDetails: "", pickupCity: "" });
-			setUploadedImages([]);
+			// // Success
+			// setFormSuccess(
+			// 	"Request submitted successfully! We'll respond within 24 hours."
+			// );
+			// setRequestFormData({ email: "", requestDetails: "", pickupCity: "" });
+			// setUploadedImages([]);
 		} catch (error) {
 			setFormError("Server error. Please check your connection.");
 		} finally {
