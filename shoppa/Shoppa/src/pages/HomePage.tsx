@@ -68,7 +68,7 @@ const HomePage = () => {
 		});
 
 		try {
-			const response = await fetch("http://localhost:8001/api/request", {
+			const response = await fetch(`${import.meta.env.VITE_API_URL}/api/request`, {
 				method: "POST",
 				body: formData,
 			});
@@ -106,7 +106,7 @@ const HomePage = () => {
 		setFormSuccess(null);
 
 		try {
-			const response = await fetch("http://localhost:8001/api/contact", {
+			const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

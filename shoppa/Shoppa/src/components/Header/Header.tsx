@@ -15,7 +15,7 @@ const Header = () => {
 				{/* Logo */}
 				<Link to="/home" className={styles.logo}>
 					<span className={styles.logoMark}></span>
-					<span className={styles.logoText}>Shoppa Japan</span>
+					<span className={styles.logoText}>TabiGoods</span>
 				</Link>
 
 				{/* Navigation links */}
