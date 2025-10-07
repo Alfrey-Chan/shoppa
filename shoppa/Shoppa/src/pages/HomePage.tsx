@@ -18,9 +18,15 @@ const HomePage = () => {
 		message: "",
 	});
 
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [formError, setFormError] = useState<string | null>(null);
-	const [formSuccess, setFormSuccess] = useState<string | null>(null);
+	// Request form states
+	const [requestSubmitting, setRequestSubmitting] = useState(false);
+	const [requestError, setRequestError] = useState<string | null>(null);
+	const [requestSuccess, setRequestSuccess] = useState<string | null>(null);
+
+	// Contact form states
+	const [contactSubmitting, setContactSubmitting] = useState(false);
+	const [contactError, setContactError] = useState<string | null>(null);
+	const [contactSuccess, setContactSuccess] = useState<string | null>(null);
 
 	const picturePaths = [
 		"snackbundle.jpg",
@@ -53,9 +59,9 @@ const HomePage = () => {
 
 	const handleRequestSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setIsSubmitting(true);
-		setFormError(null);
-		setFormSuccess(null);
+		setRequestSubmitting(true);
+		setRequestError(null);
+		setRequestSuccess(null);
 
 		const formData = new FormData();
 
@@ -78,33 +84,33 @@ const HomePage = () => {
 
 			if (response.status === 422) {
 				const errorMessages = Object.values(data.errors).flat().join(", ");
-				setFormError(errorMessages);
+				setRequestError(errorMessages);
 				return;
 			}
 
 			if (!response.ok) {
-				setFormError("Something went wrong. Please try again.");
+				setRequestError("Something went wrong. Please try again.");
 				return;
 			}
 
 			// Success
-			setFormSuccess(
+			setRequestSuccess(
 				"Request submitted successfully! We'll respond within 24 hours."
 			);
 			setRequestFormData({ email: "", requestDetails: "", pickupCity: "" });
 			setUploadedImages([]);
 		} catch (error) {
-			setFormError("Server error. Please check your connection.");
+			setRequestError("Server error. Please check your connection.");
 		} finally {
-			setIsSubmitting(false);
+			setRequestSubmitting(false);
 		}
 	};
 
 	const handleContactSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setIsSubmitting(true);
-		setFormError(null);
-		setFormSuccess(null);
+		setContactSubmitting(true);
+		setContactError(null);
+		setContactSuccess(null);
 
 		try {
 			const response = await fetch(
@@ -122,24 +128,24 @@ const HomePage = () => {
 
 			if (response.status === 422) {
 				const errorMessages = Object.values(data.errors).flat().join(", ");
-				setFormError(errorMessages);
+				setContactError(errorMessages);
 				return;
 			}
 
 			if (!response.ok) {
-				setFormError("Something went wrong. Please try again.");
+				setContactError("Something went wrong. Please try again.");
 				return;
 			}
 
 			// Success
-			setFormSuccess(
+			setContactSuccess(
 				"Message sent successfully! We'll respond within 24 hours."
 			);
 			setContactFormData({ email: "", topic: "", message: "" });
 		} catch (error) {
-			setFormError("Server error. Please try again later.");
+			setContactError("Server error. Please try again later.");
 		} finally {
-			setIsSubmitting(false);
+			setContactSubmitting(false);
 		}
 	};
 
@@ -294,19 +300,19 @@ const HomePage = () => {
 							)}
 						</div>
 
-						{formError && <div className={styles.formError}>{formError}</div>}
+						{requestError && <div className={styles.formError}>{requestError}</div>}
 
-						{formSuccess && (
-							<div className={styles.formSuccess}>{formSuccess}</div>
+						{requestSuccess && (
+							<div className={styles.formSuccess}>{requestSuccess}</div>
 						)}
 
 						<div className={styles.modalFooter}>
 							<button
 								type="submit"
 								className={styles.requestSubmitBtn}
-								disabled={isSubmitting}
+								disabled={requestSubmitting}
 							>
-								{isSubmitting ? "Submitting..." : "Submit request"}
+								{requestSubmitting ? "Submitting..." : "Submit request"}
 							</button>
 							<p>We typically respond within 24 hours.</p>
 						</div>
@@ -569,18 +575,18 @@ const HomePage = () => {
 							/>
 						</div>
 
-						{formError && <div className={styles.formError}>{formError}</div>}
+						{contactError && <div className={styles.formError}>{contactError}</div>}
 
-						{formSuccess && (
-							<div className={styles.formSuccess}>{formSuccess}</div>
+						{contactSuccess && (
+							<div className={styles.formSuccess}>{contactSuccess}</div>
 						)}
 
 						<button
 							type="submit"
 							className={styles.submit}
-							disabled={isSubmitting}
+							disabled={contactSubmitting}
 						>
-							{isSubmitting ? "Sending..." : "Send"}
+							{contactSubmitting ? "Sending..." : "Send"}
 						</button>
 					</form>
 				</div>
