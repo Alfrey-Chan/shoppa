@@ -4,15 +4,16 @@ interface HeroProps {
 	title: string;
 	subtitle: string;
 	ctaBtnText?: string;
+	servingArea: string;
 	onClick: () => void;
 }
 
-const Hero = ({ title, subtitle, ctaBtnText, onClick }: HeroProps) => {
+const Hero = ({ title, subtitle, ctaBtnText, servingArea, onClick }: HeroProps) => {
 	return (
 		<section className={styles.hero} aria-labelledby="hero-heading">
 			<div className={`${styles.container} ${styles.heroWrap}`}>
 				<div className={styles.brandPill}>
-					Serving the Greater Vancouver Area
+					{servingArea}
 				</div>
 				<h1
 					className={styles.heroTitle}

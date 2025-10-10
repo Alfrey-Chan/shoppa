@@ -1,11 +1,14 @@
 import styles from "./Footer.module.css";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Footer = () => {
-    return (
-        <div className={styles.footer}>
-            <p>© 2025 TabiGoods. Personal shopping service inspired by the spirit of omotenashi.</p>
-        </div>
-    )
+	const { t } = useLanguage();
+
+	return (
+		<div className={styles.footer}>
+			<p>{t.footer.copyright}</p>
+		</div>
+	)
 }
 
 export default Footer;

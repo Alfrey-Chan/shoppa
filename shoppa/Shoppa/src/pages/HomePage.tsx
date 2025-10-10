@@ -3,8 +3,11 @@ import styles from "./HomePage.module.css";
 import ProductCard from "../components/ProductCard/ProductCard";
 import Accordion from "../components/Accordion/Accordion";
 import { useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const HomePage = () => {
+	const { t } = useLanguage();
+
 	const [showModal, setShowModal] = useState(false);
 	const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 	const [requestFormData, setRequestFormData] = useState({
@@ -40,22 +43,7 @@ const HomePage = () => {
 		"suito.jpg",
 	];
 
-	const FAQ = {
-		"How is total pricing calculated?":
-			"Your quote includes the original item price (converted to CAD) plus our service fee.",
-		"How is the service fee calculated?":
-			"There is a base service fee of $25, which may increase for large orders or requests involving multiple stores or categories.",
-		"Are there any item restrictions?":
-			"Oversized items may not be accepted. Please inquire via the contact form or submit a request, and we'll confirm if we can accommodate your item.",
-		"What payment methods do you accept?":
-			"We currently only accept Interac e-Transfer.",
-		"Do you do delivery?":
-			"No, we arrange a time and place to meet up so we can hand off the items directly to you",
-		"Where and when do meets up happen?":
-			"We'll coordinate via email to arrange a time and location that works for you. We recommend safe designated transaction areas offered by police stations, but malls and skytrain stations are also an option.",
-		"Do you offer refunds?":
-			"Unfortunately, we do not offer refunds. All sales are final once payment is received.",
-	};
+	const FAQ = Object.values(t.faq.questions);
 
 	const handleRequestSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -73,7 +61,8 @@ const HomePage = () => {
 			formData.append("images[]", file);
 		});
 
-		const url = `${import.meta.env.VITE_API_URL}/api/request`;
+		// const url = `${import.meta.env.VITE_API_URL}/api/request`;
+		const url = `http://127.0.0.1:8001/api/request`;
 		try {
 			const response = await fetch(url, {
 				method: "POST",
@@ -89,18 +78,16 @@ const HomePage = () => {
 			}
 
 			if (!response.ok) {
-				setRequestError("Something went wrong. Please try again.");
+				setRequestError(t.modal.errorGeneric);
 				return;
 			}
 
 			// Success
-			setRequestSuccess(
-				"Request submitted successfully! We'll respond within 24 hours."
-			);
+			setRequestSuccess(t.modal.successMessage);
 			setRequestFormData({ email: "", requestDetails: "", pickupCity: "" });
 			setUploadedImages([]);
 		} catch (error) {
-			setRequestError("Server error. Please check your connection.");
+			setRequestError(t.modal.errorServer);
 		} finally {
 			setRequestSubmitting(false);
 		}
@@ -133,17 +120,15 @@ const HomePage = () => {
 			}
 
 			if (!response.ok) {
-				setContactError("Something went wrong. Please try again.");
+				setContactError(t.contact.errorGeneric);
 				return;
 			}
 
 			// Success
-			setContactSuccess(
-				"Message sent successfully! We'll respond within 24 hours."
-			);
+			setContactSuccess(t.contact.successMessage);
 			setContactFormData({ email: "", topic: "", message: "" });
 		} catch (error) {
-			setContactError("Server error. Please try again later.");
+			setContactError(t.contact.errorServer);
 		} finally {
 			setContactSubmitting(false);
 		}
@@ -155,22 +140,22 @@ const HomePage = () => {
 			<div className={styles.importantBanner}>
 				<p>
 					<span>
-						Accepting orders until{" "}
-						<strong className={styles.highlightDate}>Dec 25th</strong>
+						{t.banner.acceptingOrdersUntil}{" "}
+						<strong className={styles.highlightDate}>{t.banner.orderDeadline}</strong>
 					</span>
 					<span className={styles.separator}>|</span>
 					<span>
-						Pickup Period:{" "}
-						<strong className={styles.highlightDate}>Jan 12 - Jan 25</strong>
+						{t.banner.pickupPeriod}{" "}
+						<strong className={styles.highlightDate}>{t.banner.pickupDates}</strong>
 					</span>
 				</p>
 			</div>
 
 			<Hero
-				title="Shop from any store in Japan.<br />We'll deliver to BC."
-				subtitle="Tell us what you want, get a quote, pay, and meet locally for pickup
-                    — simple, transparent, and affordable.<br />No expensive international shipping fees."
-				ctaBtnText="Get Started"
+				title={t.hero.title}
+				subtitle={t.hero.subtitle}
+				ctaBtnText={t.hero.ctaButton}
+				servingArea={t.hero.servingArea}
 				onClick={() => setShowModal(!showModal)}
 			/>
 
@@ -178,7 +163,7 @@ const HomePage = () => {
 			<div className={`${styles.overlay} ${showModal ? styles.showModal : ""}`}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h3 className={styles.modalTitle}>Start your request</h3>
+						<h3 className={styles.modalTitle}>{t.modal.title}</h3>
 
 						<button
 							className={styles.closeModalBtn}
@@ -197,12 +182,12 @@ const HomePage = () => {
 
 					<form onSubmit={handleRequestSubmit} className={styles.modalForm}>
 						<div className={styles.inputGroup}>
-							<label htmlFor="email">Email</label>
+							<label htmlFor="email">{t.modal.email}</label>
 							<input
 								type="email"
 								name="email"
 								id="email"
-								placeholder="you@example.com"
+								placeholder={t.modal.emailPlaceholder}
 								value={requestFormData.email}
 								onChange={(e) =>
 									setRequestFormData({
@@ -215,11 +200,11 @@ const HomePage = () => {
 						</div>
 
 						<div className={styles.inputGroup}>
-							<label htmlFor="requestDetails">Your request details</label>
+							<label htmlFor="requestDetails">{t.modal.requestDetails}</label>
 							<textarea
 								id="requestDetails"
 								name="requestDetails"
-								placeholder="Tell us what you want! Include product links, photos, or specific details (brand, size, color, etc.)"
+								placeholder={t.modal.requestDetailsPlaceholder}
 								value={requestFormData.requestDetails}
 								onChange={(e) =>
 									setRequestFormData({
@@ -232,7 +217,7 @@ const HomePage = () => {
 						</div>
 
 						<div className={styles.inputGroup}>
-							<label htmlFor="location">Pickup city</label>
+							<label htmlFor="location">{t.modal.pickupCity}</label>
 							<select
 								id="location"
 								name="location"
@@ -246,22 +231,22 @@ const HomePage = () => {
 								required
 							>
 								<option value="" disabled>
-									Select one
+									{t.modal.selectOne}
 								</option>
-								<option value="Burnaby">Burnaby</option>
-								<option value="Richmond">Richmond</option>
-								<option value="West Vancouver">West Vancouver</option>
-								<option value="New Westminster">New Westminster</option>
-								<option value="Surrey">Surrey</option>
-								<option value="Coquitlam">Coquitlam</option>
-								<option value="Port Coquitlam">Port Coquitlam</option>
-								<option value="Port Moody">Port Moody</option>
-								<option value="Langley">Langley</option>
+								<option value="Burnaby">{t.cities.burnaby}</option>
+								<option value="Richmond">{t.cities.richmond}</option>
+								<option value="West Vancouver">{t.cities.westVancouver}</option>
+								<option value="New Westminster">{t.cities.newWestminster}</option>
+								<option value="Surrey">{t.cities.surrey}</option>
+								<option value="Coquitlam">{t.cities.coquitlam}</option>
+								<option value="Port Coquitlam">{t.cities.portCoquitlam}</option>
+								<option value="Port Moody">{t.cities.portMoody}</option>
+								<option value="Langley">{t.cities.langley}</option>
 							</select>
 						</div>
 
 						<div className={styles.inputGroup}>
-							<label htmlFor="images">Upload image (optional, max 5)</label>
+							<label htmlFor="images">{t.modal.uploadImage}</label>
 							<input
 								type="file"
 								id="images"
@@ -300,7 +285,9 @@ const HomePage = () => {
 							)}
 						</div>
 
-						{requestError && <div className={styles.formError}>{requestError}</div>}
+						{requestError && (
+							<div className={styles.formError}>{requestError}</div>
+						)}
 
 						{requestSuccess && (
 							<div className={styles.formSuccess}>{requestSuccess}</div>
@@ -312,9 +299,9 @@ const HomePage = () => {
 								className={styles.requestSubmitBtn}
 								disabled={requestSubmitting}
 							>
-								{requestSubmitting ? "Submitting..." : "Submit request"}
+								{requestSubmitting ? t.modal.submitting : t.modal.submitButton}
 							</button>
-							<p>We typically respond within 24 hours.</p>
+							<p>{t.modal.responseTime}</p>
 						</div>
 					</form>
 				</div>
@@ -322,7 +309,7 @@ const HomePage = () => {
 
 			{/* How it works */}
 			<section id="how-it-works" className={styles.section}>
-				<h2 className={styles.sectionHeader}>How it works (3 steps)</h2>
+				<h2 className={styles.sectionHeader}>{t.howItWorks.title}</h2>
 
 				<div className={styles.sectionContainer}>
 					<div className={styles.stepper}>
@@ -338,12 +325,8 @@ const HomePage = () => {
 									</svg>
 								</div>
 								<div className={styles.stepText}>
-									<h3>1. Request & Chat</h3>
-									<p>
-										Tell us what you want (links, photos, details). We connect
-										you with a shopper in Japan to confirm availability and
-										options.
-									</p>
+									<h3>{t.howItWorks.step1Title}</h3>
+									<p>{t.howItWorks.step1Description}</p>
 								</div>
 							</article>
 
@@ -359,12 +342,8 @@ const HomePage = () => {
 									</svg>
 								</div>
 								<div className={styles.stepText}>
-									<h3>2. Quote, Pay & Set Pickup</h3>
-									<p>
-										We provide a quote <em>(item cost + service fee)</em> and
-										payment instructions. Once paid, we agree on a time & place
-										to pick up in the Great Vancouver area.
-									</p>
+									<h3>{t.howItWorks.step2Title}</h3>
+									<p>{t.howItWorks.step2Description}</p>
 								</div>
 							</article>
 
@@ -380,11 +359,8 @@ const HomePage = () => {
 									</svg>
 								</div>
 								<div className={styles.stepText}>
-									<h3>3. We Shop & Meet</h3>
-									<p>
-										Your shopper buys the item in Japan and brings it to BC.
-										Meet at the confirmed spot—no international shipping.
-									</p>
+									<h3>{t.howItWorks.step3Title}</h3>
+									<p>{t.howItWorks.step3Description}</p>
 								</div>
 							</article>
 						</div>
@@ -405,24 +381,24 @@ const HomePage = () => {
 								</svg>
 							</div>
 							<div className={styles.locationsText}>
-								<h3>Meetup locations</h3>
-								<p>Service available in these Greater Vancouver locations:</p>
+								<h3>{t.howItWorks.meetupLocationsTitle}</h3>
+								<p>{t.howItWorks.meetupLocationsDescription}</p>
 							</div>
 						</div>
 					</div>
 
 					<div className={styles.locationsRow}>
 						<div className={styles.locationsPills}>
-							<span>Vancouver</span>
-							<span>Burnaby</span>
-							<span>Richmond</span>
-							<span>West Vancouver</span>
-							<span>New Westminster</span>
-							<span>Surrey</span>
-							<span>Coquitlam</span>
-							<span>Port Coquitlam</span>
-							<span>Port Moody</span>
-							<span>Langley</span>
+							<span>{t.cities.vancouver}</span>
+							<span>{t.cities.burnaby}</span>
+							<span>{t.cities.richmond}</span>
+							<span>{t.cities.westVancouver}</span>
+							<span>{t.cities.newWestminster}</span>
+							<span>{t.cities.surrey}</span>
+							<span>{t.cities.coquitlam}</span>
+							<span>{t.cities.portCoquitlam}</span>
+							<span>{t.cities.portMoody}</span>
+							<span>{t.cities.langley}</span>
 						</div>
 					</div>
 				</div>
@@ -433,46 +409,42 @@ const HomePage = () => {
 				id="ideas"
 				className={`${styles.section} ${styles.recommendationsSection}`}
 			>
-				<h2 className={styles.sectionHeader}>What we can get for you</h2>
+				<h2 className={styles.sectionHeader}>{t.recommendations.title}</h2>
 
 				<div className={styles.borderLine}></div>
 
 				<p className={styles.sectionSubheader}>
-					Popular Japanese snacks, treats, and other authentic goods you can't
-					find in the Lower Mainland.
-					<br />
-					<br />
-					Not sure what to get? Here are some ideas.
+					{t.recommendations.subtitle.split('\n').map((line, i) => (
+						<span key={i}>
+							{line}
+							{i < t.recommendations.subtitle.split('\n').length - 1 && <br />}
+						</span>
+					))}
 				</p>
 
 				<div className={styles.popularRequests}>
-					<p className={styles.popularRequestsTitle}>Popular requests:</p>
+					<p className={styles.popularRequestsTitle}>{t.recommendations.popularRequestsTitle}</p>
 					<ul className={styles.requestsList}>
 						<li>
-							<strong>Snack Mix</strong> — Share your budget and we'll curate
-							authentic Japanese snacks you won't find locally
+							<strong>{t.recommendations.snackMix}</strong> — {t.recommendations.snackMixDesc}
 						</li>
 						<li>
-							<strong>Royce Chocolates</strong> — Premium chocolates exclusive
-							to Japan
+							<strong>{t.recommendations.royceChocolates}</strong> — {t.recommendations.royceChocolatesDesc}
 						</li>
 						<li>
-							<strong>Tokyo Banana</strong> — The iconic Japanese souvenir snack
+							<strong>{t.recommendations.tokyoBanana}</strong> — {t.recommendations.tokyoBananaDesc}
 						</li>
 						<li>
-							<strong>Cosmetics</strong> — Makeup, skincare, shampoo, and beauty
-							products
+							<strong>{t.recommendations.cosmetics}</strong> — {t.recommendations.cosmeticsDesc}
 						</li>
 						<li>
-							<strong>Stationery</strong> — High-quality Japanese pens, markers,
-							and notebooks
+							<strong>{t.recommendations.stationery}</strong> — {t.recommendations.stationeryDesc}
 						</li>
 						<li>
-							<strong>Fashion</strong> — GU, UNIQLO, BAPE, MUJI, and more
+							<strong>{t.recommendations.fashion}</strong> — {t.recommendations.fashionDesc}
 						</li>
 						<li>
-							<strong>Anime Figures</strong> — Gundam, Demon Slayer, One Piece,
-							and other collectibles
+							<strong>{t.recommendations.animeFigures}</strong> — {t.recommendations.animeFiguresDesc}
 						</li>
 					</ul>
 				</div>
@@ -486,39 +458,38 @@ const HomePage = () => {
 
 			{/* FAQ */}
 			<section id="faq" className={styles.section}>
-				<h2 className={styles.sectionHeader}>FAQ</h2>
+				<h2 className={styles.sectionHeader}>{t.faq.title}</h2>
 				<div className={styles.borderLine}></div>
 
 				<div className={styles.faq}>
-					{Object.entries(FAQ).map(([question, answer]) => (
-						<Accordion key={question} question={question} answer={answer} />
+					{FAQ.map((item) => (
+						<Accordion key={item.question} question={item.question} answer={item.answer} />
 					))}
 				</div>
 			</section>
 
 			{/* Contact */}
 			<section id="contact" className={styles.section}>
-				<h2 className={styles.sectionHeader}>Contact</h2>
+				<h2 className={styles.sectionHeader}>{t.contact.title}</h2>
 
 				<div className={styles.borderLine}></div>
 
 				<div className={`${styles.contactContainer}`}>
 					<form onSubmit={handleContactSubmit} id="#contact">
 						<div className={styles.contactHeader}>
-							Have a question? Send us a message. For a price quote or to begin
-							your request,{" "}
+							{t.contact.header}{" "}
 							<b
 								onClick={() => setShowModal(true)}
 								style={{ cursor: "pointer", color: "var(--accent)" }}
 							>
-								click here
+								{t.contact.clickHere}
 							</b>{" "}
-							to get started
+							{t.contact.toGetStarted}
 						</div>
 
 						<div className="inputGroup">
 							<label htmlFor="email">
-								Email <span className={styles.asterick}>*</span>
+								{t.contact.email} <span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<input
 								type="email"
@@ -536,7 +507,7 @@ const HomePage = () => {
 
 						<div className="inputGroup">
 							<label htmlFor="topic">
-								Topic <span className={styles.asterick}>*</span>
+								{t.contact.topic} <span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<select
 								id="topic"
@@ -550,16 +521,16 @@ const HomePage = () => {
 								required
 							>
 								<option value="" disabled={true}></option>
-								<option value="General Question">General Question</option>
-								<option value="Item Request">Item Requests</option>
-								<option value="Pricing/Payment">Pricing/Payment</option>
-								<option value="Cancellation">Cancellation</option>
+								<option value="General Question">{t.contact.topicOptions.generalQuestion}</option>
+								<option value="Item Request">{t.contact.topicOptions.itemRequest}</option>
+								<option value="Pricing/Payment">{t.contact.topicOptions.pricingPayment}</option>
+								<option value="Cancellation">{t.contact.topicOptions.cancellation}</option>
 							</select>
 						</div>
 
 						<div className="inputGroup">
 							<label htmlFor="message">
-								Message <span className={styles.asterick}>*</span>
+								{t.contact.message} <span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<textarea
 								name="message"
@@ -575,7 +546,9 @@ const HomePage = () => {
 							/>
 						</div>
 
-						{contactError && <div className={styles.formError}>{contactError}</div>}
+						{contactError && (
+							<div className={styles.formError}>{contactError}</div>
+						)}
 
 						{contactSuccess && (
 							<div className={styles.formSuccess}>{contactSuccess}</div>
@@ -586,7 +559,7 @@ const HomePage = () => {
 							className={styles.submit}
 							disabled={contactSubmitting}
 						>
-							{contactSubmitting ? "Sending..." : "Send"}
+							{contactSubmitting ? t.contact.sending : t.contact.sendButton}
 						</button>
 					</form>
 				</div>

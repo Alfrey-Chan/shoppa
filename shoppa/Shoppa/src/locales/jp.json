@@ -1,0 +1,135 @@
+{
+  "banner": {
+    "acceptingOrdersUntil": "注文受付期限",
+    "orderDeadline": "12月25日",
+    "pickupPeriod": "受取期間：",
+    "pickupDates": "1月12日〜1月25日"
+  },
+  "hero": {
+    "title": "日本のどんなお店からでもお買い物。<br />BCまでお届けします。",
+    "subtitle": "欲しい商品を教えてください。見積もりを提示し、お支払い後、現地で受け取り—シンプル、透明、お手頃価格。<br />高額な国際配送料はかかりません。",
+    "ctaButton": "始める",
+    "servingArea": "グレーターバンクーバーエリアにサービス提供中"
+  },
+  "header": {
+    "howItWorks": "ご利用方法",
+    "ideas": "アイデア",
+    "faq": "よくある質問",
+    "contact": "お問い合わせ"
+  },
+  "footer": {
+    "copyright": "© 2025 TabiGoods. おもてなしの心に基づいたパーソナルショッピングサービス。"
+  },
+  "modal": {
+    "title": "リクエストを開始",
+    "email": "メールアドレス",
+    "emailPlaceholder": "you@example.com",
+    "requestDetails": "リクエスト詳細",
+    "requestDetailsPlaceholder": "欲しい商品を教えてください！商品リンク、写真、または詳細（ブランド、サイズ、色など）を含めてください。",
+    "pickupCity": "受取都市",
+    "selectOne": "選択してください",
+    "uploadImage": "画像をアップロード（任意、最大5枚）",
+    "submitButton": "リクエストを送信",
+    "submitting": "送信中...",
+    "responseTime": "通常24時間以内に返信いたします。",
+    "successMessage": "リクエストが正常に送信されました！24時間以内に返信いたします。",
+    "errorGeneric": "問題が発生しました。もう一度お試しください。",
+    "errorServer": "サーバーエラー。接続を確認してください。"
+  },
+  "cities": {
+    "vancouver": "バンクーバー",
+    "burnaby": "バーナビー",
+    "richmond": "リッチモンド",
+    "westVancouver": "ウエストバンクーバー",
+    "newWestminster": "ニューウエストミンスター",
+    "surrey": "サレー",
+    "coquitlam": "コキットラム",
+    "portCoquitlam": "ポートコキットラム",
+    "portMoody": "ポートムーディー",
+    "langley": "ラングレー"
+  },
+  "howItWorks": {
+    "title": "ご利用方法（3ステップ）",
+    "step1Title": "1. リクエスト＆チャット",
+    "step1Description": "欲しい商品（リンク、写真、詳細）を教えてください。日本のショッパーと連絡を取り、在庫状況やオプションを確認します。",
+    "step2Title": "2. 見積もり、支払い、受取設定",
+    "step2Description": "見積もり（商品代金＋サービス料）とお支払い方法をご案内します。お支払い後、グレーターバンクーバーエリアでの受取日時と場所を決定します。",
+    "step3Title": "3. 買い付け＆受け渡し",
+    "step3Description": "ショッパーが日本で商品を購入し、BCまで持ち帰ります。確定した場所で受け取り—国際配送はありません。",
+    "meetupLocationsTitle": "受取場所",
+    "meetupLocationsDescription": "グレーターバンクーバーの以下のエリアでサービスをご利用いただけます："
+  },
+  "recommendations": {
+    "title": "お取り寄せできる商品",
+    "subtitle": "ローワーメインランドでは手に入らない、人気の日本のお菓子、スイーツ、その他の本格的な商品。\n\n何を買うか迷っていますか？こちらをご参考ください。",
+    "popularRequestsTitle": "人気リクエスト：",
+    "snackMix": "お菓子詰め合わせ",
+    "snackMixDesc": "ご予算をお伝えください。地元では手に入らない本格的な日本のお菓子を厳選してお届けします",
+    "royceChocolates": "ロイズチョコレート",
+    "royceChocolatesDesc": "日本限定のプレミアムチョコレート",
+    "tokyoBanana": "東京ばな奈",
+    "tokyoBananaDesc": "定番の日本のお土産スイーツ",
+    "cosmetics": "コスメ・化粧品",
+    "cosmeticsDesc": "メイクアップ、スキンケア、シャンプー、美容製品",
+    "stationery": "文房具",
+    "stationeryDesc": "高品質な日本のペン、マーカー、ノート",
+    "fashion": "ファッション",
+    "fashionDesc": "GU、ユニクロ、BAPE、無印良品など",
+    "animeFigures": "アニメフィギュア",
+    "animeFiguresDesc": "ガンダム、鬼滅の刃、ワンピース、その他コレクタブル"
+  },
+  "faq": {
+    "title": "よくある質問",
+    "questions": {
+      "pricing": {
+        "question": "合計料金はどのように計算されますか？",
+        "answer": "お見積もりには、元の商品価格（CADに換算）とサービス料が含まれます。"
+      },
+      "serviceFee": {
+        "question": "サービス料はどのように計算されますか？",
+        "answer": "基本サービス料は25ドルです。大量注文や複数の店舗・カテゴリーにまたがるリクエストの場合、追加料金が発生する場合があります。"
+      },
+      "restrictions": {
+        "question": "商品に制限はありますか？",
+        "answer": "大型商品はお受けできない場合があります。お問い合わせフォームまたはリクエストからご相談ください。対応可能かどうかご確認いたします。"
+      },
+      "payment": {
+        "question": "どのような支払い方法に対応していますか？",
+        "answer": "現在、Interac e-Transferのみ対応しております。"
+      },
+      "delivery": {
+        "question": "配送サービスはありますか？",
+        "answer": "いいえ、直接お渡しできる日時と場所を調整いたします"
+      },
+      "meetup": {
+        "question": "受け渡しはいつ、どこで行われますか？",
+        "answer": "メールでご都合の良い日時と場所を調整いたします。警察署が提供する安全な取引エリアを推奨していますが、ショッピングモールやスカイトレイン駅でも可能です。"
+      },
+      "refunds": {
+        "question": "返金は可能ですか？",
+        "answer": "申し訳ございませんが、返金は承っておりません。お支払い後のキャンセルはできません。"
+      }
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "header": "ご質問がありますか？メッセージをお送りください。見積もりやリクエストを開始するには、",
+    "clickHere": "こちらをクリック",
+    "toGetStarted": "してください",
+    "email": "メールアドレス",
+    "topic": "トピック",
+    "message": "メッセージ",
+    "required": "*",
+    "topicOptions": {
+      "generalQuestion": "一般的な質問",
+      "itemRequest": "商品リクエスト",
+      "pricingPayment": "料金・支払い",
+      "cancellation": "キャンセル"
+    },
+    "sendButton": "送信",
+    "sending": "送信中...",
+    "successMessage": "メッセージが正常に送信されました！24時間以内に返信いたします。",
+    "errorGeneric": "問題が発生しました。もう一度お試しください。",
+    "errorServer": "サーバーエラー。後ほどもう一度お試しください。"
+  }
+}
