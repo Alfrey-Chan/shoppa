@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 import enTranslations from '../locales/en.json';
 import jpTranslations from '../locales/jp.json';
