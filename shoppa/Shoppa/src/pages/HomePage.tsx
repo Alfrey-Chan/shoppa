@@ -61,8 +61,8 @@ const HomePage = () => {
 			formData.append("images[]", file);
 		});
 
-		// const url = `${import.meta.env.VITE_API_URL}/api/request`;
-		const url = `http://127.0.0.1:8001/api/request`;
+		const url = `${import.meta.env.VITE_API_URL}/api/request`;
+		// const url = `http://127.0.0.1:8001/api/request`;
 		try {
 			const response = await fetch(url, {
 				method: "POST",
