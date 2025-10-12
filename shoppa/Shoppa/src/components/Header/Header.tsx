@@ -17,7 +17,7 @@ const Header = () => {
 				{/* Logo */}
 				<Link to={`/${currentLang}`} className={styles.logo}>
 					<span className={styles.logoMark}></span>
-					<span className={styles.logoText}>TabiGoods</span>
+					<span className={styles.logoText}>Otodoke</span>
 				</Link>
 
 				{/* Navigation links */}
@@ -36,13 +36,11 @@ const Header = () => {
 					</li>
 					<li>
 						{/* Language toggle */}
-						<div className="language-toggle">
-							<button className="language-btn">{currentLang === 'jp' ? '日本語' : 'English'}</button>
-							<ul className={styles.languageDropDown}>
-								<li><Link to="/en">English</Link></li>
-								<li><Link to="/jp">日本語</Link></li>
-							</ul>
-						</div>
+						{currentLang === "jp" ? (
+							<Link to="/en">English</Link>
+						) : (
+							<Link to="/jp">日本語</Link>
+						)}
 					</li>
 				</ul>
 

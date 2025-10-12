@@ -1,135 +1,135 @@
 {
-  "banner": {
-    "acceptingOrdersUntil": "Accepting orders until",
-    "orderDeadline": "Dec 25th",
-    "pickupPeriod": "Pickup Period:",
-    "pickupDates": "Jan 12 - Jan 25"
-  },
-  "hero": {
-    "title": "Shop from any store in Japan.<br />We'll deliver to BC.",
-    "subtitle": "Tell us what you want, get a quote, pay, and meet locally for pickup — simple, transparent, and affordable.<br />No expensive international shipping fees.",
-    "ctaButton": "Get Started",
-    "servingArea": "Serving the Greater Vancouver Area"
-  },
-  "header": {
-    "howItWorks": "How it works",
-    "ideas": "Ideas",
-    "faq": "FAQ",
-    "contact": "Contact"
-  },
-  "footer": {
-    "copyright": "© 2025 TabiGoods. Personal shopping service inspired by the spirit of omotenashi."
-  },
-  "modal": {
-    "title": "Start your request",
-    "email": "Email",
-    "emailPlaceholder": "you@example.com",
-    "requestDetails": "Your request details",
-    "requestDetailsPlaceholder": "Tell us what you want! Include product links, photos, or specific details (brand, size, color, etc.)",
-    "pickupCity": "Pickup city",
-    "selectOne": "Select one",
-    "uploadImage": "Upload image (optional, max 5)",
-    "submitButton": "Submit request",
-    "submitting": "Submitting...",
-    "responseTime": "We typically respond within 24 hours.",
-    "successMessage": "Request submitted successfully! We'll respond within 24 hours.",
-    "errorGeneric": "Something went wrong. Please try again.",
-    "errorServer": "Server error. Please check your connection."
-  },
-  "cities": {
-    "vancouver": "Vancouver",
-    "burnaby": "Burnaby",
-    "richmond": "Richmond",
-    "westVancouver": "West Vancouver",
-    "newWestminster": "New Westminster",
-    "surrey": "Surrey",
-    "coquitlam": "Coquitlam",
-    "portCoquitlam": "Port Coquitlam",
-    "portMoody": "Port Moody",
-    "langley": "Langley"
-  },
-  "howItWorks": {
-    "title": "How it works (3 steps)",
-    "step1Title": "1. Request & Chat",
-    "step1Description": "Tell us what you want (links, photos, details). We connect you with a shopper in Japan to confirm availability and options.",
-    "step2Title": "2. Quote, Pay & Set Pickup",
-    "step2Description": "We provide a quote (item cost + service fee) and payment instructions. Once paid, we agree on a time & place to pick up in the Great Vancouver area.",
-    "step3Title": "3. We Shop & Meet",
-    "step3Description": "Your shopper buys the item in Japan and brings it to BC. Meet at the confirmed spot—no international shipping.",
-    "meetupLocationsTitle": "Meetup locations",
-    "meetupLocationsDescription": "Service available in these Greater Vancouver locations:"
-  },
-  "recommendations": {
-    "title": "What we can get for you",
-    "subtitle": "Popular Japanese snacks, treats, and other authentic goods you can't find in the Lower Mainland.\n\nNot sure what to get? Here are some ideas.",
-    "popularRequestsTitle": "Popular requests:",
-    "snackMix": "Snack Mix",
-    "snackMixDesc": "Share your budget and we'll curate authentic Japanese snacks you won't find locally",
-    "royceChocolates": "Royce Chocolates",
-    "royceChocolatesDesc": "Premium chocolates exclusive to Japan",
-    "tokyoBanana": "Tokyo Banana",
-    "tokyoBananaDesc": "The iconic Japanese souvenir snack",
-    "cosmetics": "Cosmetics",
-    "cosmeticsDesc": "Makeup, skincare, shampoo, and beauty products",
-    "stationery": "Stationery",
-    "stationeryDesc": "High-quality Japanese pens, markers, and notebooks",
-    "fashion": "Fashion",
-    "fashionDesc": "GU, UNIQLO, BAPE, MUJI, and more",
-    "animeFigures": "Anime Figures",
-    "animeFiguresDesc": "Gundam, Demon Slayer, One Piece, and other collectibles"
-  },
-  "faq": {
-    "title": "FAQ",
-    "questions": {
-      "pricing": {
-        "question": "How is total pricing calculated?",
-        "answer": "Your quote includes the original item price (converted to CAD) plus our service fee."
-      },
-      "serviceFee": {
-        "question": "How is the service fee calculated?",
-        "answer": "There is a base service fee of $25, which may increase for large orders or requests involving multiple stores or categories."
-      },
-      "restrictions": {
-        "question": "Are there any item restrictions?",
-        "answer": "Oversized items may not be accepted. Please inquire via the contact form or submit a request, and we'll confirm if we can accommodate your item."
-      },
-      "payment": {
-        "question": "What payment methods do you accept?",
-        "answer": "We currently only accept Interac e-Transfer."
-      },
-      "delivery": {
-        "question": "Do you do delivery?",
-        "answer": "No, we arrange a time and place to meet up so we can hand off the items directly to you"
-      },
-      "meetup": {
-        "question": "Where and when do meets up happen?",
-        "answer": "We'll coordinate via email to arrange a time and location that works for you. We recommend safe designated transaction areas offered by police stations, but malls and skytrain stations are also an option."
-      },
-      "refunds": {
-        "question": "Do you offer refunds?",
-        "answer": "Unfortunately, we do not offer refunds. All sales are final once payment is received."
-      }
-    }
-  },
-  "contact": {
-    "title": "Contact",
-    "header": "Have a question? Send us a message. For a price quote or to begin your request,",
-    "clickHere": "click here",
-    "toGetStarted": "to get started",
-    "email": "Email",
-    "topic": "Topic",
-    "message": "Message",
-    "required": "*",
-    "topicOptions": {
-      "generalQuestion": "General Question",
-      "itemRequest": "Item Requests",
-      "pricingPayment": "Pricing/Payment",
-      "cancellation": "Cancellation"
-    },
-    "sendButton": "Send",
-    "sending": "Sending...",
-    "successMessage": "Message sent successfully! We'll respond within 24 hours.",
-    "errorGeneric": "Something went wrong. Please try again.",
-    "errorServer": "Server error. Please try again later."
-  }
+	"banner": {
+		"acceptingOrdersUntil": "Accepting orders until",
+		"orderDeadline": "Dec 25th",
+		"pickupPeriod": "Pickup Period:",
+		"pickupDates": "Jan 12 - Jan 25"
+	},
+	"hero": {
+		"title": "Shop from any store in Japan.<br />We'll deliver to BC.",
+		"subtitle": "Tell us what you want, get a quote, pay, and meet locally for pickup — simple, transparent, and affordable.<br />No expensive international shipping fees.",
+		"ctaButton": "Get Started",
+		"servingArea": "Serving the Greater Vancouver Area"
+	},
+	"header": {
+		"howItWorks": "How it works",
+		"ideas": "Ideas",
+		"faq": "FAQ",
+		"contact": "Contact"
+	},
+	"footer": {
+		"copyright": "© 2025 Otodoke. Personal shopping service inspired by the spirit of omotenashi."
+	},
+	"modal": {
+		"title": "Start your request",
+		"email": "Email",
+		"emailPlaceholder": "you@example.com",
+		"requestDetails": "Your request details",
+		"requestDetailsPlaceholder": "Tell us what you want! Include product links, photos, or specific details (brand, size, color, etc.)",
+		"pickupCity": "Pickup city",
+		"selectOne": "Select one",
+		"uploadImage": "Upload image (optional, max 5)",
+		"submitButton": "Submit request",
+		"submitting": "Submitting...",
+		"responseTime": "We typically respond within 24 hours.",
+		"successMessage": "Request submitted successfully! We'll respond within 24 hours.",
+		"errorGeneric": "Something went wrong. Please try again.",
+		"errorServer": "Server error. Please check your connection."
+	},
+	"cities": {
+		"vancouver": "Vancouver",
+		"burnaby": "Burnaby",
+		"richmond": "Richmond",
+		"westVancouver": "West Vancouver",
+		"newWestminster": "New Westminster",
+		"surrey": "Surrey",
+		"coquitlam": "Coquitlam",
+		"portCoquitlam": "Port Coquitlam",
+		"portMoody": "Port Moody",
+		"langley": "Langley"
+	},
+	"howItWorks": {
+		"title": "How it works (3 steps)",
+		"step1Title": "1. Request & Chat",
+		"step1Description": "Tell us what you want (links, photos, details). We connect you with a shopper in Japan to confirm availability and options.",
+		"step2Title": "2. Quote, Pay & Set Pickup",
+		"step2Description": "We provide a quote (item cost + service fee) and payment instructions. Once paid, we agree on a time & place to pick up in the Great Vancouver area.",
+		"step3Title": "3. We Shop & Meet",
+		"step3Description": "Your shopper buys the item in Japan and brings it to BC. Meet at the confirmed spot—no international shipping.",
+		"meetupLocationsTitle": "Meetup locations",
+		"meetupLocationsDescription": "Service available in these Greater Vancouver locations:"
+	},
+	"recommendations": {
+		"title": "What we can get for you",
+		"subtitle": "Popular Japanese snacks, treats, and other authentic goods you can't find in the Lower Mainland.\n\nNot sure what to get? Here are some ideas.",
+		"popularRequestsTitle": "Popular requests:",
+		"snackMix": "Snack Mix",
+		"snackMixDesc": "Share your budget and we'll curate authentic Japanese snacks you won't find locally",
+		"royceChocolates": "Royce Chocolates",
+		"royceChocolatesDesc": "Premium chocolates exclusive to Japan",
+		"tokyoBanana": "Tokyo Banana",
+		"tokyoBananaDesc": "The iconic Japanese souvenir snack",
+		"cosmetics": "Cosmetics",
+		"cosmeticsDesc": "Makeup, skincare, shampoo, and beauty products",
+		"stationery": "Stationery",
+		"stationeryDesc": "High-quality Japanese pens, markers, and notebooks",
+		"fashion": "Fashion",
+		"fashionDesc": "GU, UNIQLO, BAPE, MUJI, and more",
+		"animeFigures": "Anime Figures",
+		"animeFiguresDesc": "Gundam, Demon Slayer, One Piece, and other collectibles"
+	},
+	"faq": {
+		"title": "FAQ",
+		"questions": {
+			"pricing": {
+				"question": "How is total pricing calculated?",
+				"answer": "Your quote includes the original item price (converted to CAD) plus our service fee."
+			},
+			"serviceFee": {
+				"question": "How is the service fee calculated?",
+				"answer": "There is a base service fee of $25, which may increase for large orders or requests involving multiple stores or categories."
+			},
+			"restrictions": {
+				"question": "Are there any item restrictions?",
+				"answer": "Oversized items may not be accepted. Please inquire via the contact form or submit a request, and we'll confirm if we can accommodate your item."
+			},
+			"payment": {
+				"question": "What payment methods do you accept?",
+				"answer": "We currently only accept Interac e-Transfer."
+			},
+			"delivery": {
+				"question": "Do you do delivery?",
+				"answer": "No, we arrange a time and place to meet up so we can hand off the items directly to you"
+			},
+			"meetup": {
+				"question": "Where and when do meets up happen?",
+				"answer": "We'll coordinate via email to arrange a time and location that works for you. We recommend safe designated transaction areas offered by police stations, but malls and skytrain stations are also an option."
+			},
+			"refunds": {
+				"question": "Do you offer refunds?",
+				"answer": "Unfortunately, we do not offer refunds. All sales are final once payment is received."
+			}
+		}
+	},
+	"contact": {
+		"title": "Contact",
+		"header": "Have a question? Send us a message. For a price quote or to begin your request,",
+		"clickHere": "click here",
+		"toGetStarted": "to get started",
+		"email": "Email",
+		"topic": "Topic",
+		"message": "Message",
+		"required": "*",
+		"topicOptions": {
+			"generalQuestion": "General Question",
+			"itemRequest": "Item Requests",
+			"pricingPayment": "Pricing/Payment",
+			"cancellation": "Cancellation"
+		},
+		"sendButton": "Send",
+		"sending": "Sending...",
+		"successMessage": "Message sent successfully! We'll respond within 24 hours.",
+		"errorGeneric": "Something went wrong. Please try again.",
+		"errorServer": "Server error. Please try again later."
+	}
 }
