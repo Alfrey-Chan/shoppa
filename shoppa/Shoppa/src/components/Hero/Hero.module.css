@@ -44,13 +44,14 @@
 }
 
 .heroTitle {
-	font-size: var(--font-size-3xl);
+	font-size: var(--font-size-2xl);
 	margin-bottom: var(--space-md);
 }
 
 .heroSubtitle {
 	color: var(--muted);
 	max-width: 80%;
+	font-size: var(--font-size-xs);
 }
 
 .heroCta {
@@ -109,7 +110,8 @@
 		opacity: 1;
 	}
 	100% {
-		transform: translate(calc(var(--x, 0px) + var(--dx, 60px)), 300px) rotate(260deg);
+		transform: translate(calc(var(--x, 0px) + var(--dx, 60px)), 300px)
+			rotate(260deg);
 		opacity: 0.85;
 	}
 }
@@ -118,5 +120,15 @@
 	.petal {
 		animation: none !important;
 		opacity: 0.7;
+	}
+}
+
+@media (min-width: 768px) {
+	.heroTitle {
+		font-size: var(--font-size-3xl);
+	}
+
+	.heroSubtitle {
+		font-size: var(--font-size-xl);
 	}
 }
