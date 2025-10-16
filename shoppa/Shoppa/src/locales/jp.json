@@ -6,8 +6,8 @@
     "pickupDates": "1月12日〜1月25日"
   },
   "hero": {
-    "title": "日本のどんなお店からでもお買い物。<br />BCまでお届けします。",
-    "subtitle": "欲しい商品を教えてください。見積もりを提示し、お支払い後、現地で受け取り—シンプル、透明、お手頃価格。<br />高額な国際配送料はかかりません。",
+    "title": "日本のどんなお店からでもお買い物<br />BCまでお届けします ᯓ ✈︎",
+    "subtitle": "欲しい商品を教えてください。見積もりを提示し、お支払い後、現地で受け取り—シンプル、透明、お手頃価格<br />高額な国際配送料はかかりません",
     "ctaButton": "始める",
     "servingArea": "グレーターバンクーバーエリアにサービス提供中"
   },
@@ -37,31 +37,31 @@
     "errorServer": "サーバーエラー。接続を確認してください。"
   },
   "cities": {
-    "vancouver": "バンクーバー",
-    "burnaby": "バーナビー",
-    "richmond": "リッチモンド",
-    "westVancouver": "ウエストバンクーバー",
-    "newWestminster": "ニューウエストミンスター",
-    "surrey": "サレー",
-    "coquitlam": "コキットラム",
-    "portCoquitlam": "ポートコキットラム",
-    "portMoody": "ポートムーディー",
-    "langley": "ラングレー"
+    "vancouver": "Vancouver",
+    "burnaby": "Burnaby",
+    "richmond": "Richmond",
+    "westVancouver": "West Vancouver",
+    "newWestminster": "New Westminister",
+    "surrey": "Surrey",
+    "coquitlam": "Coquitlam",
+    "portCoquitlam": "Port Coquitlam",
+    "portMoody": "Port Moody",
+    "langley": "Langley"
   },
   "howItWorks": {
     "title": "ご利用方法（3ステップ）",
     "step1Title": "1. リクエスト＆チャット",
     "step1Description": "欲しい商品（リンク、写真、詳細）を教えてください。日本のショッパーと連絡を取り、在庫状況やオプションを確認します。",
     "step2Title": "2. 見積もり、支払い、受取設定",
-    "step2Description": "見積もり（商品代金＋サービス料）とお支払い方法をご案内します。お支払い後、グレーターバンクーバーエリアでの受取日時と場所を決定します。",
+    "step2Description": "見積もり（商品代金＋サービス料）とお支払い方法をご案内します。お支払い後、バンクーバーエリアでの受取日時と場所を決定します。",
     "step3Title": "3. 買い付け＆受け渡し",
     "step3Description": "ショッパーが日本で商品を購入し、BCまで持ち帰ります。確定した場所で受け取り—国際配送はありません。",
     "meetupLocationsTitle": "受取場所",
-    "meetupLocationsDescription": "グレーターバンクーバーの以下のエリアでサービスをご利用いただけます："
+    "meetupLocationsDescription": "バンクーバーの以下のエリアでお受け取りいただけます："
   },
   "recommendations": {
     "title": "お取り寄せできる商品",
-    "subtitle": "ローワーメインランドでは手に入らない、人気の日本のお菓子、スイーツ、その他の本格的な商品。\n\n何を買うか迷っていますか？こちらをご参考ください。",
+    "subtitle": "カナダでは手に入らない、人気の日本のお菓子、スイーツ、その他の本格的な商品。\n\n何を買うか迷っていますか？こちらをご参考ください。",
     "popularRequestsTitle": "人気リクエスト：",
     "snackMix": "お菓子詰め合わせ",
     "snackMixDesc": "ご予算をお伝えください。地元では手に入らない本格的な日本のお菓子を厳選してお届けします",
