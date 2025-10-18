@@ -34,7 +34,8 @@
     "responseTime": "通常24時間以内に返信いたします。",
     "successMessage": "リクエストが正常に送信されました！24時間以内に返信いたします。",
     "errorGeneric": "問題が発生しました。もう一度お試しください。",
-    "errorServer": "サーバーエラー。接続を確認してください。"
+    "errorServer": "サーバーエラー。接続を確認してください。",
+    "errorFileLimit": "ファイルアップロード上限に達しました。最大5枚まで。"
   },
   "cities": {
     "vancouver": "Vancouver",

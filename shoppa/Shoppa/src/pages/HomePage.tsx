@@ -265,9 +265,7 @@ const HomePage = () => {
 									if (files) {
 										const newFiles = Array.from(files);
 										if (uploadedImages.length + newFiles.length > 5) {
-											setRequestError(
-												"File upload limit reached. Maximum 5 images allowed."
-											);
+											setRequestError(t.modal.errorFileLimit);
 										} else {
 											setUploadedImages([...uploadedImages, ...newFiles]);
 										}

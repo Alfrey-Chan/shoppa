@@ -34,7 +34,8 @@
 		"responseTime": "We typically respond within 24 hours.",
 		"successMessage": "Request submitted successfully! We'll respond within 24 hours.",
 		"errorGeneric": "Something went wrong. Please try again.",
-		"errorServer": "Server error. Please check your connection."
+		"errorServer": "Server error. Please check your connection.",
+		"errorFileLimit": "File upload limit reached. Maximum 5 images allowed."
 	},
 	"cities": {
 		"vancouver": "Vancouver",
