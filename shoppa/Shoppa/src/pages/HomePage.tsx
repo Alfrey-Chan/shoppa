@@ -141,12 +141,16 @@ const HomePage = () => {
 				<p>
 					<span>
 						{t.banner.acceptingOrdersUntil}{" "}
-						<strong className={styles.highlightDate}>{t.banner.orderDeadline}</strong>
+						<strong className={styles.highlightDate}>
+							{t.banner.orderDeadline}
+						</strong>
 					</span>
 					<span className={styles.separator}>|</span>
 					<span>
 						{t.banner.pickupPeriod}{" "}
-						<strong className={styles.highlightDate}>{t.banner.pickupDates}</strong>
+						<strong className={styles.highlightDate}>
+							{t.banner.pickupDates}
+						</strong>
 					</span>
 				</p>
 			</div>
@@ -236,7 +240,9 @@ const HomePage = () => {
 								<option value="Burnaby">{t.cities.burnaby}</option>
 								<option value="Richmond">{t.cities.richmond}</option>
 								<option value="West Vancouver">{t.cities.westVancouver}</option>
-								<option value="New Westminster">{t.cities.newWestminster}</option>
+								<option value="New Westminster">
+									{t.cities.newWestminster}
+								</option>
 								<option value="Surrey">{t.cities.surrey}</option>
 								<option value="Coquitlam">{t.cities.coquitlam}</option>
 								<option value="Port Coquitlam">{t.cities.portCoquitlam}</option>
@@ -254,9 +260,17 @@ const HomePage = () => {
 								accept="image/jpeg,image/png,image/jpg"
 								multiple
 								onChange={(e) => {
-									if (e.target.files) {
-										const newFiles = Array.from(e.target.files);
-										setUploadedImages([...uploadedImages, ...newFiles]);
+									setRequestError("");
+									const files = e.target.files;
+									if (files) {
+										const newFiles = Array.from(files);
+										if (uploadedImages.length + newFiles.length > 5) {
+											setRequestError(
+												"File upload limit reached. Maximum 5 images allowed."
+											);
+										} else {
+											setUploadedImages([...uploadedImages, ...newFiles]);
+										}
 									}
 								}}
 							/>
@@ -414,37 +428,46 @@ const HomePage = () => {
 				<div className={styles.borderLine}></div>
 
 				<p className={styles.sectionSubheader}>
-					{t.recommendations.subtitle.split('\n').map((line, i) => (
+					{t.recommendations.subtitle.split("\n").map((line, i) => (
 						<span key={i}>
 							{line}
-							{i < t.recommendations.subtitle.split('\n').length - 1 && <br />}
+							{i < t.recommendations.subtitle.split("\n").length - 1 && <br />}
 						</span>
 					))}
 				</p>
 
 				<div className={styles.popularRequests}>
-					<p className={styles.popularRequestsTitle}>{t.recommendations.popularRequestsTitle}</p>
+					<p className={styles.popularRequestsTitle}>
+						{t.recommendations.popularRequestsTitle}
+					</p>
 					<ul className={styles.requestsList}>
 						<li>
-							<strong>{t.recommendations.snackMix}</strong> — {t.recommendations.snackMixDesc}
+							<strong>{t.recommendations.snackMix}</strong> —{" "}
+							{t.recommendations.snackMixDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.royceChocolates}</strong> — {t.recommendations.royceChocolatesDesc}
+							<strong>{t.recommendations.royceChocolates}</strong> —{" "}
+							{t.recommendations.royceChocolatesDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.tokyoBanana}</strong> — {t.recommendations.tokyoBananaDesc}
+							<strong>{t.recommendations.tokyoBanana}</strong> —{" "}
+							{t.recommendations.tokyoBananaDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.cosmetics}</strong> — {t.recommendations.cosmeticsDesc}
+							<strong>{t.recommendations.cosmetics}</strong> —{" "}
+							{t.recommendations.cosmeticsDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.stationery}</strong> — {t.recommendations.stationeryDesc}
+							<strong>{t.recommendations.stationery}</strong> —{" "}
+							{t.recommendations.stationeryDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.fashion}</strong> — {t.recommendations.fashionDesc}
+							<strong>{t.recommendations.fashion}</strong> —{" "}
+							{t.recommendations.fashionDesc}
 						</li>
 						<li>
-							<strong>{t.recommendations.animeFigures}</strong> — {t.recommendations.animeFiguresDesc}
+							<strong>{t.recommendations.animeFigures}</strong> —{" "}
+							{t.recommendations.animeFiguresDesc}
 						</li>
 					</ul>
 				</div>
@@ -463,7 +486,11 @@ const HomePage = () => {
 
 				<div className={styles.faq}>
 					{FAQ.map((item) => (
-						<Accordion key={item.question} question={item.question} answer={item.answer} />
+						<Accordion
+							key={item.question}
+							question={item.question}
+							answer={item.answer}
+						/>
 					))}
 				</div>
 			</section>
@@ -489,7 +516,8 @@ const HomePage = () => {
 
 						<div className="inputGroup">
 							<label htmlFor="email">
-								{t.contact.email} <span className={styles.asterick}>{t.contact.required}</span>
+								{t.contact.email}{" "}
+								<span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<input
 								type="email"
@@ -507,7 +535,8 @@ const HomePage = () => {
 
 						<div className="inputGroup">
 							<label htmlFor="topic">
-								{t.contact.topic} <span className={styles.asterick}>{t.contact.required}</span>
+								{t.contact.topic}{" "}
+								<span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<select
 								id="topic"
@@ -521,16 +550,25 @@ const HomePage = () => {
 								required
 							>
 								<option value="" disabled={true}></option>
-								<option value="General Question">{t.contact.topicOptions.generalQuestion}</option>
-								<option value="Item Request">{t.contact.topicOptions.itemRequest}</option>
-								<option value="Pricing/Payment">{t.contact.topicOptions.pricingPayment}</option>
-								<option value="Cancellation">{t.contact.topicOptions.cancellation}</option>
+								<option value="General Question">
+									{t.contact.topicOptions.generalQuestion}
+								</option>
+								<option value="Item Request">
+									{t.contact.topicOptions.itemRequest}
+								</option>
+								<option value="Pricing/Payment">
+									{t.contact.topicOptions.pricingPayment}
+								</option>
+								<option value="Cancellation">
+									{t.contact.topicOptions.cancellation}
+								</option>
 							</select>
 						</div>
 
 						<div className="inputGroup">
 							<label htmlFor="message">
-								{t.contact.message} <span className={styles.asterick}>{t.contact.required}</span>
+								{t.contact.message}{" "}
+								<span className={styles.asterick}>{t.contact.required}</span>
 							</label>
 							<textarea
 								name="message"
